@@ -1,15 +1,3 @@
 {
-  "tasks": [
-    {
-      "name": "Go work",
-      "done": true,
-      "id": 2
-    },
-    {
-      "createdAt": 1697048968115,
-      "name": "Learn python",
-      "done": false,
-      "id": 3
-    }
-  ]
+  "tasks": []
 }

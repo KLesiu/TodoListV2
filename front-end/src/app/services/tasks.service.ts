@@ -31,7 +31,7 @@ export class TasksService{
                 done:false
             } as Task)
         }).then<Task | Error>(res=>{
-            if(res.ok) return res.json()
+            if(res.ok&&name.length > 0) return res.json()
             return new Error('Cant add task')
         })
     }
@@ -53,6 +53,19 @@ export class TasksService{
         }).then<Task |Error>(res=>{
             if(res.ok) return res.json()
             return new Error('Cant edit your task!')
+        })
+    }
+    async changeDone(taskId:number,done:boolean){
+        return fetch(`${this.URL}/tasks/${taskId}`,{
+            method: "PATCH",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({done})
+
+        }).then<Task | Error>(res=>{
+            if(res.ok) return res.json()
+            return new Error('Cant change done status')
         })
     }
 }
