@@ -7,15 +7,17 @@ import { Task } from '../types/task.type';
 import { NgIf } from '@angular/common';
 import { TasksService } from '../services/tasks.service';
 import { LoadingElementTrainComponent } from './loading-element-train.component';
+import { RegisterFormComponent } from './register-form.component';
+import { LoginFormComponent } from './login-form.component';
 
 
 @Component({
   selector: 'app-main-app-container',
   standalone: true,
-  imports: [FooterComponent,ListTasksComponent,SubmitTaskComponent,ListTasksComponent,NgIf,LoadingElementTrainComponent],
+  imports: [FooterComponent,ListTasksComponent,SubmitTaskComponent,ListTasksComponent,NgIf,LoadingElementTrainComponent,RegisterFormComponent,LoginFormComponent],
   template: `
     <main class="flex justify-between flex-wrap flex-col items-center h-[90vh] ">
-        <div>
+        <div *ngIf="isLogIn;else loginANDregisterForms">
           <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
           <app-list-tasks *ngIf="listState.state==='success'" class="block mt-4" [tasks]="listState.results" />
           <p *ngIf="listState.state==='error'">{{listState.error.msg}}</p>
@@ -24,6 +26,14 @@ import { LoadingElementTrainComponent } from './loading-element-train.component'
          </p>
 
         </div>
+        <ng-template  #loginANDregisterForms>
+          <div class="flex justify-around w-[40%] flex-wrap">
+            <app-register-form />
+            <app-login-form />
+          </div>
+
+        </ng-template>
+
 
         <app-footer />
     </main>
@@ -32,7 +42,7 @@ import { LoadingElementTrainComponent } from './loading-element-train.component'
   ]
 })
 export class MainAppContainerComponent {
-
+    isLogIn:boolean=false
     listState:ComponentListState<Task>={state:'init'}
     private tasksService = inject(TasksService)
     ngOnInit(){
