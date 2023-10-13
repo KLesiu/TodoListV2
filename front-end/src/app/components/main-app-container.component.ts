@@ -21,6 +21,7 @@ import { ButtonLogoutComponent } from './button-logout.component';
     <main class="flex justify-between flex-wrap flex-col items-center h-[90vh] ">
         <div id="containerForComponents" *ngIf="isLogIn;else loginANDregisterForms" class=" p-20 min-h-[80vh] min-w-[40vw] flex flex-wrap flex-col items-center rounded-lg">
           <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
+          
           <app-list-tasks *ngIf="listState.state==='success'" class="block mt-4 w-[70%]" [tasks]="listState.results" />
           <p *ngIf="listState.state==='error'">{{listState.error.msg}}</p>
           <p *ngIf="listState.state==='loading'">

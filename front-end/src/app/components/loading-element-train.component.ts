@@ -16,8 +16,8 @@ import { CommonModule } from '@angular/common';
   styles: [
     `
     .container {
-  margin-left:35%;
-  margin-top:10%;
+  margin-left:20%;
+  margin-top:150px;
   position: relative;
 }
 
