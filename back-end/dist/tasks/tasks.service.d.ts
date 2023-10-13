@@ -46,9 +46,9 @@ export declare class TasksService {
     updateTask(user: {
         name: string;
         _id: string;
-        tasks: [];
+        tasks: Array<Task | null>[];
     }, id: string, body: {
         name: string;
-    }): Promise<import("mongoose").UpdateWriteOpResult | "We couldnt find your task!">;
+    }): Promise<import("mongoose").UpdateWriteOpResult>;
     deleteTask(id: string): Promise<void>;
 }

@@ -39,17 +39,14 @@ let TasksService = class TasksService {
         return 'Added!';
     }
     async updateTask(user, id, body) {
-        const updatedTask = await this.taskModel.findById(id);
-        const userWithArray = await this.userModel.updateOne({
-            _id: user._id,
-            'tasks._id': id
-        }, {
-            $set: { 'tasks.$.name': body.name }
+        const searchUser = await this.userModel.findById(user._id);
+        const allTasks = await searchUser['tasks'];
+        const updatedTasks = allTasks.map((ele) => {
+            if (`${ele._id}` === id)
+                ele.name = body.name;
+            return ele;
         });
-        if (!updatedTask)
-            return 'We couldnt find your task!';
-        await updatedTask.updateOne({ name: body.name });
-        return userWithArray;
+        return searchUser.updateOne({ tasks: updatedTasks });
     }
     async deleteTask(id) {
     }

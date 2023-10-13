@@ -15,8 +15,8 @@ exports.UserSchema = new mongoose.Schema({
         select: false
     },
     tasks: {
-        type: Array,
-        required: false
+        type: (Array),
+        required: true
     }
 });
 //# sourceMappingURL=users.model.js.map

@@ -34,6 +34,6 @@ export declare class AppController {
     getProfile(req: any): any;
     getTasksFromUser(req: any): Promise<any>;
     postNewTask(req: any): Promise<String>;
-    updateTask(req: any): Promise<import("mongoose").UpdateWriteOpResult | "We couldnt find your task!">;
+    updateTask(req: any): Promise<import("mongoose").UpdateWriteOpResult>;
     deleteTask(req: any): Promise<void>;
 }

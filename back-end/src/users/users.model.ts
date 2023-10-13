@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose'
+import { Task } from 'src/tasks/tasks.model'
 
 export const UserSchema = new mongoose.Schema({
     name: {
@@ -13,8 +14,8 @@ export const UserSchema = new mongoose.Schema({
         select:false
     },
     tasks:{
-    type:Array,
-    required:false
+    type:Array<Task>,
+    required:true
     }
 })
 

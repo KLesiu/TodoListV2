@@ -17,7 +17,7 @@ export const TaskSchema = new mongoose.Schema({
 })
 
 export interface Task extends mongoose.Document{
-    id:string,
+   
     name:string,
     done:boolean,
     createdAt:number

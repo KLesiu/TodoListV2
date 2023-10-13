@@ -11,10 +11,10 @@ export class UsersService {
 
 
     async findOneUser(name:string):Promise<User | any>{
-        return this.userModel.findOne({name:name}).exec()
+        return await this.userModel.findOne({name:name}).exec()
     }
     async createUser(userData:any):Promise<any>{
-        const findUser = this.findOneUser(userData.name)
+        const findUser = await this.findOneUser(userData.name)
         if(findUser) return 'We have a user with this name'
         const salt = await bcrypt.genSalt(10);
         

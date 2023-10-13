@@ -15,7 +15,6 @@ export declare const TaskSchema: mongoose.Schema<any, mongoose.Model<any, any, a
     _id: mongoose.Types.ObjectId;
 }>;
 export interface Task extends mongoose.Document {
-    id: string;
     name: string;
     done: boolean;
     createdAt: number;
