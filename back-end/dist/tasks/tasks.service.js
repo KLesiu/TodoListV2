@@ -36,7 +36,9 @@ let TasksService = class TasksService {
         if (!task)
             return 'We couldnt create your task!';
         await searchUser.updateOne({ tasks: [...searchUser['tasks'], task] });
-        return 'Added!';
+        return JSON.stringify({
+            msg: "ADDED"
+        });
     }
     async updateTask(user, id, body) {
         const searchUser = await this.userModel.findById(user._id);

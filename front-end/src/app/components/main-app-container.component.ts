@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject ,Input,Output} from '@angular/core';
 import { FooterComponent } from './footer.component';
 import { ListTasksComponent } from './list-tasks.component';
 import { SubmitTaskComponent } from './submit-task.component';
@@ -9,6 +9,7 @@ import { TasksService } from '../services/tasks.service';
 import { LoadingElementTrainComponent } from './loading-element-train.component';
 import { RegisterFormComponent } from './register-form.component';
 import { LoginFormComponent } from './login-form.component';
+
 
 
 @Component({
@@ -29,7 +30,7 @@ import { LoginFormComponent } from './login-form.component';
         <ng-template  #loginANDregisterForms>
           <div class="flex justify-around w-[40%] flex-wrap">
             <app-register-form />
-            <app-login-form />
+            <app-login-form (newLogInStatus)="changeisLogInStatus($event)"  />
           </div>
 
         </ng-template>
@@ -46,7 +47,7 @@ export class MainAppContainerComponent {
     listState:ComponentListState<Task>={state:'init'}
     private tasksService = inject(TasksService)
     ngOnInit(){
-      
+      if(localStorage.getItem('jwt')) this.isLogIn=true
       this.listState={state:"loading"}
       this.tasksService.getAllTasks().then(res=>{
         if(Array.isArray(res)) this.listState={state:"success",results:res}
@@ -63,6 +64,10 @@ export class MainAppContainerComponent {
       }
       useTaskServiceToAdd()
       
+    }
+    changeisLogInStatus(value:boolean){
+      this.isLogIn=value
+      this.ngOnInit()
     }
 
 }

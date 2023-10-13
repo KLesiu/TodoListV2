@@ -38,7 +38,9 @@ export class TasksService {
         const task=await this.taskModel.create(taskData)
         if(!task) return 'We couldnt create your task!'
         await searchUser.updateOne({tasks:[...searchUser['tasks'],task]})
-        return 'Added!'
+        return JSON.stringify({
+            msg:"ADDED"
+        })
         
 
 

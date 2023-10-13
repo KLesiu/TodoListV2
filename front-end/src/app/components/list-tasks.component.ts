@@ -17,12 +17,12 @@ import { AutoFieldAreaComponent } from './auto-field-area.component';
         <div class="rounded-md shadow-md p-4 block">
           <button class="w-full" (click)="handleSingleClick(task)" (dblclick)="switchModeToEdit(task)">
           <aside class="flex justify-end">
-            <app-remove-task-button (confirm)="delete(task.id)" />
+            <app-remove-task-button (confirm)="delete(task._id)" />
           </aside>
           <section class="text-left">
-            <app-auto-field-area *ngIf="editMode&&switchingTask===task.id;else previewModeTemplate"
+            <app-auto-field-area *ngIf="editMode&&switchingTask===task._id;else previewModeTemplate"
             (keyup.escape)="editMode = false"
-            (submitText)="updateTask(task.id,$event,task)"
+            (submitText)="updateTask(task._id,$event,task)"
             [value]="task.name" />
             <ng-template #previewModeTemplate>
                 <span [class.line-through]="task.done">
@@ -53,7 +53,7 @@ export class ListTasksComponent {
   private tasksService = inject(TasksService)
   delete(taskId:number){
     this.tasksService.delete(taskId)
-    const newTasks = this.tasks.filter(task=>task.id !== taskId)
+    const newTasks = this.tasks.filter(task=>task._id !== taskId)
     this.tasks = newTasks
     console.log(this.tasks)
     
@@ -74,12 +74,12 @@ export class ListTasksComponent {
   })}
 
   switchModeToEdit(task:Task){
-    this.switchingTask=task.id
+    this.switchingTask=task._id
     this.isSingleClick=false
     this.editMode=true
   }
   changeDoneStatus(task:Task){
     task.done = !task.done
-    this.tasksService.changeDone(task.id,task.done)
+    this.tasksService.changeDone(task._id,task.done)
   }
 }

@@ -10,11 +10,21 @@ import { wait } from "../helpers/wait";
 export class TasksService{
     private URL = "http://localhost:3000"
     async getAllTasks(){
+        
         await wait()
-        return fetch(`${this.URL}`).then<Task[] | ListFetchingError>(res=>{
-            if(res.ok) return res.json()
+        return fetch(`${this.URL}`,{
+            method:"GET",
+            headers:{
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            }
+        }).then<Task[] | ListFetchingError>(res=>{
+            if(res.ok){
+                console.log()
+                return res.json()
+            }
+             
             return {
-        status:res.status,msg:res.statusText}
+        status:res.status,msg:'Error'}
         })
 
     }
@@ -23,7 +33,8 @@ export class TasksService{
         return fetch(`${this.URL}`,{
             method: "POST",
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
             },
             body:JSON.stringify({
                 createdAt: new Date().getTime(),
@@ -38,6 +49,10 @@ export class TasksService{
     async delete(taskId:number){
         return fetch(`${this.URL}/${taskId}`,{
             method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            }
         }).then<Error | undefined>((res)=>{
             if(res.ok) return res.json()
             return new Error('Cant delete task')
@@ -47,7 +62,8 @@ export class TasksService{
         return fetch(`${this.URL}/${taskId}`,{
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
             },
             body: JSON.stringify({name})
         }).then<Task |Error>(res=>{
@@ -59,7 +75,8 @@ export class TasksService{
         return fetch(`${this.URL}/${taskId}/update`,{
             method: "PATCH",
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
             },
             body: JSON.stringify({done})
 
