@@ -9,22 +9,24 @@ import { TasksService } from '../services/tasks.service';
 import { LoadingElementTrainComponent } from './loading-element-train.component';
 import { RegisterFormComponent } from './register-form.component';
 import { LoginFormComponent } from './login-form.component';
+import { ButtonLogoutComponent } from './button-logout.component';
 
 
 
 @Component({
   selector: 'app-main-app-container',
   standalone: true,
-  imports: [FooterComponent,ListTasksComponent,SubmitTaskComponent,ListTasksComponent,NgIf,LoadingElementTrainComponent,RegisterFormComponent,LoginFormComponent],
+  imports: [FooterComponent,ListTasksComponent,SubmitTaskComponent,ListTasksComponent,NgIf,LoadingElementTrainComponent,RegisterFormComponent,LoginFormComponent,ButtonLogoutComponent],
   template: `
     <main class="flex justify-between flex-wrap flex-col items-center h-[90vh] ">
-        <div *ngIf="isLogIn;else loginANDregisterForms">
+        <div id="containerForComponents" *ngIf="isLogIn;else loginANDregisterForms" class=" p-20 min-h-[80vh] min-w-[40vw] flex flex-wrap flex-col items-center rounded-lg">
           <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
-          <app-list-tasks *ngIf="listState.state==='success'" class="block mt-4" [tasks]="listState.results" />
+          <app-list-tasks *ngIf="listState.state==='success'" class="block mt-4 w-[70%]" [tasks]="listState.results" />
           <p *ngIf="listState.state==='error'">{{listState.error.msg}}</p>
           <p *ngIf="listState.state==='loading'">
           <app-loading-element-train  />  
          </p>
+         <app-button-logout (newLogInStatus)="changeisLogInStatus($event)" />
 
         </div>
         <ng-template  #loginANDregisterForms>
@@ -40,6 +42,13 @@ import { LoginFormComponent } from './login-form.component';
     </main>
   `,
   styles: [
+    `
+    #containerForComponents{
+    -webkit-box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
+    }
+    `
   ]
 })
 export class MainAppContainerComponent {

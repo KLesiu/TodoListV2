@@ -17,6 +17,15 @@ import { Component,EventEmitter, Output } from '@angular/core';
       input:focus+button{
       @apply text-blue-400 opacity-100
     }
+    
+    button:hover{
+      background: rgb(220,222,226);
+background: -moz-radial-gradient(circle, rgba(220,222,226,1) 0%, rgba(217,222,219,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(220,222,226,1) 0%, rgba(217,222,219,1) 100%);
+background: radial-gradient(circle, rgba(220,222,226,1) 0%, rgba(217,222,219,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dcdee2",endColorstr="#d9dedb",GradientType=1);
+    }
+    
       
     `
   ]
