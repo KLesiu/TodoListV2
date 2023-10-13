@@ -52,17 +52,38 @@ export class TasksService {
     }){
         const searchUser: Model<User> = await this.userModel.findById(user._id)
         const allTasks = await searchUser['tasks']
-        const updatedTasks = allTasks.map((ele)=>{
+        
+      
+        const updatedTasks = allTasks.map((ele:Task)=>{
           
            
             if(`${ele._id}`=== id) ele.name=body.name
             return ele
 
         })
-        return searchUser.updateOne({tasks:updatedTasks})
+        
+        const updatedUser = await searchUser.updateOne({tasks:updatedTasks})
+        await this.taskModel.findByIdAndUpdate(id,{"name":body.name})
+        return updatedUser
+      
       
     }
-    async deleteTask(id:string){
+    async deleteTask(user:{
+        name:string,
+        _id:string,
+        tasks:Array<Task | null>[],
+    },id:string,body:{
+        name:string
+    }){
+        const searchUser: Model<User> = await this.userModel.findById(user._id)
+        const allTasks = await searchUser['tasks']
+        const updatedTasks = allTasks.filter((ele)=>{
+            if(`${ele._id}`!== id) return ele
+        })
+        
+        const updatedUser = await searchUser.updateOne({tasks:updatedTasks})
+        await this.taskModel.findByIdAndRemove(id)
+        return updatedUser
         
     }
 

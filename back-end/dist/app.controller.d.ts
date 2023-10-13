@@ -35,5 +35,5 @@ export declare class AppController {
     getTasksFromUser(req: any): Promise<any>;
     postNewTask(req: any): Promise<String>;
     updateTask(req: any): Promise<import("mongoose").UpdateWriteOpResult>;
-    deleteTask(req: any): Promise<void>;
+    deleteTask(req: any): Promise<import("mongoose").UpdateWriteOpResult>;
 }

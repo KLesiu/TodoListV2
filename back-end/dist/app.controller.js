@@ -41,7 +41,7 @@ let AppController = class AppController {
         return this.taskService.updateTask(req.user, req.params.id, req.body);
     }
     deleteTask(req) {
-        return this.taskService.deleteTask(req.params.id);
+        return this.taskService.deleteTask(req.user, req.params.id, req.body);
     }
 };
 exports.AppController = AppController;

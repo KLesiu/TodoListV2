@@ -48,7 +48,7 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deleteTask(@Request() req){
-    return this.taskService.deleteTask(req.params.id)
+    return this.taskService.deleteTask(req.user,req.params.id,req.body)
   }
 
 }

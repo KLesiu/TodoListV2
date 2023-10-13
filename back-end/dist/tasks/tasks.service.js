@@ -46,9 +46,20 @@ let TasksService = class TasksService {
                 ele.name = body.name;
             return ele;
         });
-        return searchUser.updateOne({ tasks: updatedTasks });
+        const updatedUser = await searchUser.updateOne({ tasks: updatedTasks });
+        await this.taskModel.findByIdAndUpdate(id, { "name": body.name });
+        return updatedUser;
     }
-    async deleteTask(id) {
+    async deleteTask(user, id, body) {
+        const searchUser = await this.userModel.findById(user._id);
+        const allTasks = await searchUser['tasks'];
+        const updatedTasks = allTasks.filter((ele) => {
+            if (`${ele._id}` !== id)
+                return ele;
+        });
+        const updatedUser = await searchUser.updateOne({ tasks: updatedTasks });
+        await this.taskModel.findByIdAndRemove(id);
+        return updatedUser;
     }
 };
 exports.TasksService = TasksService;
