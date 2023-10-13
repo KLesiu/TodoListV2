@@ -11,7 +11,7 @@ export class TasksService{
     private URL = "http://localhost:3000"
     async getAllTasks(){
         await wait()
-        return fetch(`${this.URL}/tasks`).then<Task[] | ListFetchingError>(res=>{
+        return fetch(`${this.URL}`).then<Task[] | ListFetchingError>(res=>{
             if(res.ok) return res.json()
             return {
         status:res.status,msg:res.statusText}
@@ -20,7 +20,7 @@ export class TasksService{
     }
     async add(name:string){
         await wait()
-        return fetch(`${this.URL}/tasks`,{
+        return fetch(`${this.URL}`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -36,7 +36,7 @@ export class TasksService{
         })
     }
     async delete(taskId:number){
-        return fetch(`${this.URL}/tasks/${taskId}`,{
+        return fetch(`${this.URL}/${taskId}`,{
             method: "DELETE",
         }).then<Error | undefined>((res)=>{
             if(res.ok) return res.json()
@@ -44,7 +44,7 @@ export class TasksService{
         })
     }
     async update(name:string,taskId:number){
-        return fetch(`${this.URL}/tasks/${taskId}`,{
+        return fetch(`${this.URL}/${taskId}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -56,7 +56,7 @@ export class TasksService{
         })
     }
     async changeDone(taskId:number,done:boolean){
-        return fetch(`${this.URL}/tasks/${taskId}`,{
+        return fetch(`${this.URL}/${taskId}/update`,{
             method: "PATCH",
             headers:{
                 "Content-Type": "application/json"
