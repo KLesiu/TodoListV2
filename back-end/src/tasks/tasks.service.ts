@@ -86,5 +86,27 @@ export class TasksService {
         return updatedUser
         
     }
+    async changeDone(user:{
+        name:string,
+        _id:string,
+        tasks:Array<Task | null>[],
+    },id:string,body:{
+        done:string
+    }){
+        const searchUser: Model<User> = await this.userModel.findById(user._id)
+        const allTasks = await searchUser['tasks']
+        const updatedTasks = allTasks.map((ele:Task)=>{
+          
+           
+            if(`${ele._id}`=== id) ele.done=!ele.done
+            return ele
+
+        })
+        
+        const updatedUser = await searchUser.updateOne({tasks:updatedTasks})
+        await this.taskModel.findByIdAndUpdate(id,{"done":JSON.parse(body.done) })
+        return updatedUser
+
+    }
 
 }

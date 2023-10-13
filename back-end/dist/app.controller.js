@@ -43,6 +43,9 @@ let AppController = class AppController {
     deleteTask(req) {
         return this.taskService.deleteTask(req.user, req.params.id, req.body);
     }
+    changeDone(req) {
+        return this.taskService.changeDone(req.user, req.params.id, req.body);
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -99,6 +102,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "deleteTask", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Patch)('/:id/update'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "changeDone", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [auth_service_1.AuthService,

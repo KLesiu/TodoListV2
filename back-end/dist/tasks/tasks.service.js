@@ -61,6 +61,18 @@ let TasksService = class TasksService {
         await this.taskModel.findByIdAndRemove(id);
         return updatedUser;
     }
+    async changeDone(user, id, body) {
+        const searchUser = await this.userModel.findById(user._id);
+        const allTasks = await searchUser['tasks'];
+        const updatedTasks = allTasks.map((ele) => {
+            if (`${ele._id}` === id)
+                ele.done = !ele.done;
+            return ele;
+        });
+        const updatedUser = await searchUser.updateOne({ tasks: updatedTasks });
+        await this.taskModel.findByIdAndUpdate(id, { "done": JSON.parse(body.done) });
+        return updatedUser;
+    }
 };
 exports.TasksService = TasksService;
 exports.TasksService = TasksService = __decorate([

@@ -50,5 +50,10 @@ export class AppController {
   deleteTask(@Request() req){
     return this.taskService.deleteTask(req.user,req.params.id,req.body)
   }
+  @UseGuards(JwtAuthGuard)
+  @Patch('/:id/update')
+  changeDone(@Request() req){
+    return this.taskService.changeDone(req.user,req.params.id,req.body)
+  }
 
 }

@@ -57,4 +57,11 @@ export declare class TasksService {
     }, id: string, body: {
         name: string;
     }): Promise<import("mongoose").UpdateWriteOpResult>;
+    changeDone(user: {
+        name: string;
+        _id: string;
+        tasks: Array<Task | null>[];
+    }, id: string, body: {
+        done: string;
+    }): Promise<import("mongoose").UpdateWriteOpResult>;
 }
