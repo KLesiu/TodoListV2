@@ -3,14 +3,14 @@ import { NgFor, NgIf } from '@angular/common';
 import { Task } from '../types/task.type';
 import { TasksService } from '../services/tasks.service';
 import { RemoveTaskButtonComponent } from './remove-task-button.component';
-import { NgIconComponent } from '@ng-icons/core';
+
 import { AutoFieldAreaComponent } from './auto-field-area.component';
 
 
 @Component({
   selector: 'app-list-tasks',
   standalone: true,
-  imports: [NgFor,NgIf,NgIconComponent,RemoveTaskButtonComponent,AutoFieldAreaComponent],
+  imports: [NgFor,NgIf,RemoveTaskButtonComponent,AutoFieldAreaComponent],
   template: `
    <ul class="mt-[5vh]" *ngIf="tasks.length>0 ;else noTasksElement">
       <li class="mb-2" *ngFor="let task of tasks">
@@ -48,17 +48,17 @@ export class ListTasksComponent {
   removeMode = false
   editMode = false
   isSingleClick = true
-  switchingTask = 1000
+  switchingTask = ""
 
   private tasksService = inject(TasksService)
-  delete(taskId:number){
+  delete(taskId:string){
     this.tasksService.delete(taskId)
     const newTasks = this.tasks.filter(task=>task._id !== taskId)
     this.tasks = newTasks
-    console.log(this.tasks)
+   
     
   }
-  updateTask(taskId:number,updateName:string,task:Task){
+  updateTask(taskId:string,updateName:string,task:Task){
     this.tasksService.update(updateName,taskId)
     this.editMode=false
     task.name = updateName

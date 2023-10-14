@@ -1,6 +1,6 @@
 export type Task={
-    _id:number
+    _id:string
     done:boolean,
     name:string,
-    createdAt:number
+    createdAt?:number
 }

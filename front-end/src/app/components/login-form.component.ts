@@ -8,7 +8,7 @@ import { FormControl,FormGroup,ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule],
   template: `
-     <form [formGroup]="applyForm" (submit)="subForm()" class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
+     <form [formGroup]="applyForm" (submit)="subForm()"  class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
       <h2 class="text-blue-600  text-2xl border-b-2 border-indigo-300">LOGIN</h2>
       <label for="username">Username</label>
       <input type="text" name="username"  formControlName="username">

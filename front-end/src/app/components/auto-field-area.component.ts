@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
       <textarea
+   
       #textarea
       [placeholder]="placeholder"
       [value]="value"

@@ -46,7 +46,7 @@ export class TasksService{
             return new Error('Cant add task')
         })
     }
-    async delete(taskId:number){
+    async delete(taskId:string){
         return fetch(`${this.URL}/${taskId}`,{
             method: "DELETE",
             headers:{
@@ -58,7 +58,7 @@ export class TasksService{
             return new Error('Cant delete task')
         })
     }
-    async update(name:string,taskId:number){
+    async update(name:string,taskId:string){
         return fetch(`${this.URL}/${taskId}`,{
             method: "PATCH",
             headers: {
@@ -71,7 +71,7 @@ export class TasksService{
             return new Error('Cant edit your task!')
         })
     }
-    async changeDone(taskId:number,done:boolean){
+    async changeDone(taskId:string,done:boolean){
         return fetch(`${this.URL}/${taskId}/update`,{
             method: "PATCH",
             headers:{
