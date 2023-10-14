@@ -11,7 +11,9 @@ import { wait } from "../helpers/wait";
 export class AuthService{
     private URL = "http://localhost:3000"
     async register(username:string,password:string,rpassword:string){
-        if(password !== rpassword) return 'Passwords arent same'
+        if(!username) return {status: 'Username is required'}
+        if(!password || !rpassword) return {status: "Both passwords are required"}
+        if(password !== rpassword) return {status:'Passwords arent same'}
         return fetch(`${this.URL}/register`,{
             method: "POST",
             headers: {
@@ -21,7 +23,7 @@ export class AuthService{
                 name:username,
                 password:password
             })
-        }).then<User[]|ListFetchingError>(res=>{
+        }).then<any>(res=>{
             if(res.ok) return res.json()
             return {status:res.status,msg:res.statusText}
         })

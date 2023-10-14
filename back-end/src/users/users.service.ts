@@ -15,7 +15,7 @@ export class UsersService {
     }
     async createUser(userData:any):Promise<any>{
         const findUser = await this.findOneUser(userData.name)
-        if(findUser) return 'We have a user with this name'
+        if(findUser) return {status:'We have a user with this name'}
         const salt = await bcrypt.genSalt(10);
         
         const hashPass = await bcrypt.hash(userData.password,salt)

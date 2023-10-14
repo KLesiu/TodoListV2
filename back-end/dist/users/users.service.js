@@ -27,7 +27,7 @@ let UsersService = class UsersService {
     async createUser(userData) {
         const findUser = await this.findOneUser(userData.name);
         if (findUser)
-            return 'We have a user with this name';
+            return { status: 'We have a user with this name' };
         const salt = await bcrypt.genSalt(10);
         const hashPass = await bcrypt.hash(userData.password, salt);
         const newUser = await this.userModel.create({

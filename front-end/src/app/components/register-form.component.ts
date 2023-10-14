@@ -43,7 +43,9 @@ export class RegisterFormComponent {
       this.applyForm.value.username ?? '',
       this.applyForm.value.password ?? '',
       this.applyForm.value.rpassword ?? ''
-    ).then(()=>this.applyForm.reset())
+    ).then((res)=>{
+      alert(res.status)
+    }).then(()=>this.applyForm.reset())
   }
   
 }

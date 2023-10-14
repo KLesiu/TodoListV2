@@ -21,8 +21,12 @@ let AuthService = class AuthService {
     }
     async login(user) {
         const findUser = await this.usersService.findOneUser(user.name);
+        if (!user.name)
+            return { status: 'Name is required' };
+        if (!user.password)
+            return { status: "Password is required" };
         if (!findUser)
-            return 'We havent user with that username, please regiser first.';
+            return { status: 'We havent user with that username, please register first.' };
         const correctPass = await bcrypt.compare(user.password, findUser.password);
         if (correctPass) {
             const info = { name: user.name, sub: user._id };
@@ -34,7 +38,7 @@ let AuthService = class AuthService {
     }
     async register(userData) {
         const user = await this.usersService.createUser(userData);
-        return user;
+        return { user: user, status: "Registered!" };
     }
 };
 exports.AuthService = AuthService;
