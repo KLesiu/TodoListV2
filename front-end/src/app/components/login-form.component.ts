@@ -42,7 +42,7 @@ export class LoginFormComponent {
     this.authService.login(
       this.applyForm.value.username ?? '',
       this.applyForm.value.password ?? '',
-       ).then<any>(()=>this.applyForm.reset())
+       ).then(()=>this.applyForm.reset())
     
   }
   changeStatus(value:boolean){

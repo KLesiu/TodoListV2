@@ -19,11 +19,21 @@ export class AuthService {
         return null
     }
     async login(user:any): Promise<any>{
-        
-        const info = {name:user.name,sub: user._id}
-        return {
-            access_token:this.jwtService.sign(info)
+        const findUser = await this.usersService.findOneUser(user.name)
+        if(!findUser) return 'We havent user with that username, please regiser first.'
+      
+        const correctPass = await bcrypt.compare(user.password,findUser.password)
+        if(correctPass){
+            const info = {name:user.name,sub: user._id}
+            return {
+                access_token:this.jwtService.sign(info)
+           
+            }
         }
+        return  'Incorrect password'
+    
+           
+        
 
     }
     async register(userData:{name:string,password:string}):Promise<any>{

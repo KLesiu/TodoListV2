@@ -43,7 +43,7 @@ export class AuthService{
                 return res.json()
             } 
             return {status:res.status,msg:res.statusText}
-        }).then<any>(data=>{
+        }).catch((err)=>console.log(err)).then<any>(data=>{
             localStorage.setItem("jwt",data.access_token)
             return data
         })

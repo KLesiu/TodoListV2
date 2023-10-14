@@ -22,7 +22,7 @@ let UsersService = class UsersService {
         this.userModel = userModel;
     }
     async findOneUser(name) {
-        return await this.userModel.findOne({ name: name }).exec();
+        return await this.userModel.findOne({ name: name });
     }
     async createUser(userData) {
         const findUser = await this.findOneUser(userData.name);
