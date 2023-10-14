@@ -7,7 +7,7 @@ import {MongooseModule} from '@nestjs/mongoose'
 import { TasksModule } from './tasks/tasks.module';
 
 @Module({
-  imports: [AuthModule, UsersModule,TasksModule,MongooseModule.forRoot(`mongodb+srv://guest:123@cluster0.jenqrab.mongodb.net/TodoListV2?retryWrites=true&w=majority`)],
+  imports: [AuthModule, UsersModule,TasksModule,MongooseModule.forRoot(`mongodb+srv://admin:admin@cluster0.jenqrab.mongodb.net/?retryWrites=true&w=majority`)],
   controllers: [AppController],
   providers: [],
 })
