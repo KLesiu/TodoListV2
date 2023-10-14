@@ -18,7 +18,7 @@ import { ButtonLogoutComponent } from './button-logout.component';
   standalone: true,
   imports: [FooterComponent,ListTasksComponent,SubmitTaskComponent,ListTasksComponent,NgIf,LoadingElementTrainComponent,RegisterFormComponent,LoginFormComponent,ButtonLogoutComponent],
   template: `
-    <main class="flex justify-between flex-wrap flex-col items-center h-[90vh] ">
+    <main class="flex justify-between flex-wrap flex-col items-center min-h-[90vh] ">
         <div id="containerForComponents" *ngIf="isLogIn;else loginANDregisterForms" class=" p-20 min-h-[80vh] min-w-[40vw] flex flex-wrap flex-col items-center rounded-lg">
           <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
           

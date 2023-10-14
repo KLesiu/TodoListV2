@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-   <button (click)="logOut()" class="absolute top-8 right-10 border rounded-lg p-2 text-2xl ">LOGOUT</button>
+   <button (click)="logOut()" class="absolute top-20 right-10 border rounded-lg p-2 text-1xl ">LOGOUT</button>
   `,
   styles: [
     `

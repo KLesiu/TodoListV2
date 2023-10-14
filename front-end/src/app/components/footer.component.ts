@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <footer>
+    <footer class="mt-20">
       <p >Created&Designed by 
         <a class="text-blue-700" href="https://github.com/KLesiu" target="_blank"> KLesiu</a> 
       </p>
