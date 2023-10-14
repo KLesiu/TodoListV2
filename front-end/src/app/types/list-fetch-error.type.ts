@@ -1,1 +1,4 @@
-export type ListFetchingError = {status:number,msg:string}
+export type ListFetchingError = {
+    status:number,
+    msg:string
+}

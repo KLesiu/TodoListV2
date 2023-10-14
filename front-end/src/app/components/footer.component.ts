@@ -7,14 +7,15 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <footer class="mt-20">
-      <p >Created&Designed by 
-        <a class="text-blue-700" href="https://github.com/KLesiu" target="_blank"> KLesiu</a> 
+      <p>
+        Created&Designed by 
+        <a class="text-blue-700" href="https://github.com/KLesiu" target="_blank">
+           KLesiu
+        </a> 
       </p>
     </footer>
   `,
   styles: [
   ]
 })
-export class FooterComponent {
-
-}
+export class FooterComponent {}

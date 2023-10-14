@@ -18,7 +18,7 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, tasks_module_1.TasksModule, mongoose_1.MongooseModule.forRoot(`mongodb+srv://guest:guest123@cluster0.jenqrab.mongodb.net/TodoListV2?retryWrites=true&w=majority`)],
+        imports: [auth_module_1.AuthModule, users_module_1.UsersModule, tasks_module_1.TasksModule, mongoose_1.MongooseModule.forRoot(`mongodb+srv://guest:123@cluster0.jenqrab.mongodb.net/TodoListV2?retryWrites=true&w=majority`)],
         controllers: [app_controller_1.AppController],
         providers: [],
     })

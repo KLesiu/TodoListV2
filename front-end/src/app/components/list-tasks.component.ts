@@ -3,7 +3,6 @@ import { NgFor, NgIf } from '@angular/common';
 import { Task } from '../types/task.type';
 import { TasksService } from '../services/tasks.service';
 import { RemoveTaskButtonComponent } from './remove-task-button.component';
-
 import { AutoFieldAreaComponent } from './auto-field-area.component';
 
 
@@ -15,15 +14,17 @@ import { AutoFieldAreaComponent } from './auto-field-area.component';
    <ul class="mt-[5vh]" *ngIf="tasks.length>0 ;else noTasksElement">
       <li class="mb-2" *ngFor="let task of tasks">
         <div class="rounded-md shadow-md p-4 block">
-          <button class="w-full" (click)="handleSingleClick(task)" (dblclick)="switchModeToEdit(task)">
+          <button class="w-full" 
+            (click)="handleSingleClick(task)" 
+            (dblclick)="switchModeToEdit(task)">
           <aside class="flex justify-end">
             <app-remove-task-button (confirm)="delete(task._id)" />
           </aside>
           <section class="text-left">
             <app-auto-field-area *ngIf="editMode&&switchingTask===task._id;else previewModeTemplate"
-            (keyup.escape)="editMode = false"
-            (submitText)="updateTask(task._id,$event,task)"
-            [value]="task.name" />
+              (keyup.escape)="editMode = false"
+              (submitText)="updateTask(task._id,$event,task)"
+              [value]="task.name" />
             <ng-template #previewModeTemplate>
                 <span [class.line-through]="task.done">
                   {{ task.name }}
@@ -37,7 +38,9 @@ import { AutoFieldAreaComponent } from './auto-field-area.component';
       
    </ul>
    <ng-template #noTasksElement>
-      <p>You dont have any tasks!</p>
+      <p>
+        You dont have any tasks!
+      </p>
    </ng-template>
   `,
   styles: [

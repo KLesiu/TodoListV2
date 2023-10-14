@@ -1,21 +1,21 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-auto-field-area',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
-      <textarea
-   
-      #textarea
-      [placeholder]="placeholder"
-      [value]="value"
-      class="resize-none overflow-hidden focus:outline-orange-400 w-full"
-      (click)="$event.stopPropagation()"
-      (keyup.enter)="submitText.emit(textarea.value); textarea.value = ''"
-      (input)="calcHeight(textarea)"
-    ></textarea>
+    <textarea
+        #textarea
+        [placeholder]="placeholder"
+        [value]="value"
+        class="resize-none overflow-hidden focus:outline-orange-400 w-full"
+        (click)="$event.stopPropagation()"
+        (keyup.enter)="submitText.emit(textarea.value); textarea.value = ''"
+        (input)="calcHeight(textarea)"
+    >
+    </textarea>
   `,
   styles: [
   ]

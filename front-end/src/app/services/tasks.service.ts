@@ -10,7 +10,6 @@ import { wait } from "../helpers/wait";
 export class TasksService{
     private URL = "http://localhost:3000"
     async getAllTasks(){
-        
         await wait()
         return fetch(`${this.URL}`,{
             method:"GET",
@@ -18,11 +17,7 @@ export class TasksService{
                 "Authorization": `Bearer ${localStorage.getItem("jwt")}`
             }
         }).then<Task[] | ListFetchingError>(res=>{
-            if(res.ok){
-                console.log()
-                return res.json()
-            }
-             
+            if(res.ok) return res.json()
             return {
         status:res.status,msg:'Error'}
         })
