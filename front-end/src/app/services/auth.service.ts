@@ -38,14 +38,18 @@ export class AuthService{
                 password:password
             })
         }).then(res=>{
-            if(res.ok){
-                
-                return res.json()
-            } 
+            if(res.ok) return res.json() 
+            
             return {status:res.status,msg:res.statusText}
-        }).catch((err)=>console.log(err)).then<any>(data=>{
-            localStorage.setItem("jwt",data.access_token)
-            return data
+        }).then<any>(data=>{
+            if(data.access_token){
+                localStorage.setItem("jwt",data.access_token)
+                
+                return {status:"validated",token:data.access_token}
+            }
+            return {status:data.status}
+            
         })
+        
     }
 }

@@ -39,10 +39,19 @@ export class LoginFormComponent {
   })
   subApp(){
     
-    this.authService.login(
+  const auth=   this.authService.login(
       this.applyForm.value.username ?? '',
       this.applyForm.value.password ?? '',
-       ).then(()=>this.applyForm.reset())
+      
+       ).then((res)=>{
+        if(res.status==="validated"){
+          return this.changeStatus(true)
+        }
+        alert(res.status)
+
+        
+       }).then(()=>this.applyForm.reset())
+       
     
   }
   changeStatus(value:boolean){
@@ -50,7 +59,7 @@ export class LoginFormComponent {
   }
   subForm(){
     this.subApp()
-   this.changeStatus(true)
+   
 
 
   }

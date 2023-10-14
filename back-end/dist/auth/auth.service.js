@@ -19,14 +19,6 @@ let AuthService = class AuthService {
         this.usersService = usersService;
         this.jwtService = jwtService;
     }
-    async validateUser(name, password) {
-        const user = await this.usersService.findOneUser(name);
-        if (user && bcrypt.compare(password, user.password)) {
-            const { password, ...result } = user;
-            return result;
-        }
-        return null;
-    }
     async login(user) {
         const findUser = await this.usersService.findOneUser(user.name);
         if (!findUser)
@@ -38,7 +30,7 @@ let AuthService = class AuthService {
                 access_token: this.jwtService.sign(info)
             };
         }
-        return 'Incorrect password';
+        return { status: 'Incorrect password' };
     }
     async register(userData) {
         const user = await this.usersService.createUser(userData);

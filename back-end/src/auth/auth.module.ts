@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
-import { LocalStrategy } from './local-strategy';
+
 import { PassportModule } from '@nestjs/passport/dist';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { JwtStrategy } from './jwt-strategy';
@@ -12,7 +12,7 @@ import { JwtStrategy } from './jwt-strategy';
     secret: process.env.JWT_SECRET,
     signOptions:{expiresIn:'100000s'},
   })],
-  providers: [AuthService,LocalStrategy ,JwtStrategy],
+  providers: [AuthService,JwtStrategy],
   exports:[AuthService]
 })
 export class AuthModule {}

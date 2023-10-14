@@ -10,14 +10,7 @@ export class AuthService {
         private usersService:UsersService,
         private jwtService:JwtService
     ){}
-    async validateUser(name:string,password:string):Promise<any>{
-        const user = await this.usersService.findOneUser(name);
-        if (user && bcrypt.compare(password,user.password)){
-            const {password, ...result} = user
-            return result
-        }
-        return null
-    }
+   
     async login(user:any): Promise<any>{
         const findUser = await this.usersService.findOneUser(user.name)
         if(!findUser) return 'We havent user with that username, please regiser first.'
@@ -30,7 +23,7 @@ export class AuthService {
            
             }
         }
-        return  'Incorrect password'
+        return  {status:'Incorrect password'}
     
            
         

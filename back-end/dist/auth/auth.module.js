@@ -10,7 +10,6 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const users_module_1 = require("../users/users.module");
-const local_strategy_1 = require("./local-strategy");
 const dist_1 = require("@nestjs/passport/dist");
 const dist_2 = require("@nestjs/jwt/dist");
 const jwt_strategy_1 = require("./jwt-strategy");
@@ -23,7 +22,7 @@ exports.AuthModule = AuthModule = __decorate([
                 secret: process.env.JWT_SECRET,
                 signOptions: { expiresIn: '100000s' },
             })],
-        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
         exports: [auth_service_1.AuthService]
     })
 ], AuthModule);
