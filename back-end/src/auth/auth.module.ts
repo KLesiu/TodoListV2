@@ -6,8 +6,7 @@ import { JwtModule } from '@nestjs/jwt/dist';
 import { JwtStrategy } from './jwt-strategy';
 
 @Module({
- 
-  imports:[UsersModule,PassportModule,JwtModule.register({
+ imports:[UsersModule,PassportModule,JwtModule.register({
     secret: process.env.JWT_SECRET,
     signOptions:{expiresIn:'100000s'},
   })],

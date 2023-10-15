@@ -8,13 +8,11 @@ import * as bcrypt from 'bcrypt'
 export class UsersService {
 
     constructor(@InjectModel('User') private readonly userModel:Model<User>){}
-
-
-    // Find user in the database
+    
     async findOneUser(name:string):Promise<User | any>{
         return await this.userModel.findOne({name:name})
     }
-    // Create new user
+   
     async createUser(userData:any):Promise<any>{
         const findUser = await this.findOneUser(userData.name)
         if(findUser) return {status:'We have a user with this name'}

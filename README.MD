@@ -59,3 +59,6 @@ Technologies used in the project:
 *   Postman
 *   Bcrypt
 *   Jest
+
+<h2>Sensitive data</h2>
+Sensitive data was provided for recruitment purposes

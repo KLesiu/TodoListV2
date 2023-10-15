@@ -10,51 +10,59 @@ export class AppController {
     private taskService: TasksService) 
     {}
 
-
   @Post('/register')
- register(@Request() req){
-    return this.authService.register(req.body)
+  register(@Request() req){
+    const {body}=req
+    return this.authService.register(body)
   }
 
   @Post('/login')
- login(@Request() req){
-    return this.authService.login(req.body)
+  login(@Request() req){
+    const {body}=req
+    return this.authService.login(body)
   
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req){
-    return req.user
+    const {user}=req
+    return user
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('')
+  @Get()
   getTasksFromUser(@Request() req){
-  return this.taskService.getTasks(req.user)
-}
+  const {user}=req
+  return this.taskService.getTasks(user)
+  }
 
   @UseGuards(JwtAuthGuard)
-  @Post('')
+  @Post()
   postNewTask(@Request() req){
-    return this.taskService.postTask(req.user,req.body)
+    const {user,body}=req
+    return this.taskService.postTask(user,body)
   }
 
   @UseGuards(JwtAuthGuard)
   @Patch('/:id')
   updateTask(@Request() req){
-    return this.taskService.updateTask(req.user,req.params.id,req.body)
+    const {user,body}=req
+    return this.taskService.updateTask(user,req.params.id,body)
   }
   
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deleteTask(@Request() req){
-    return this.taskService.deleteTask(req.user,req.params.id,req.body)
+    const {user,body}=req
+    return this.taskService.deleteTask(user,req.params.id,body)
   }
+
   @UseGuards(JwtAuthGuard)
   @Patch('/:id/update')
   changeDone(@Request() req){
-    return this.taskService.changeDone(req.user,req.params.id,req.body)
+    const {user,body}=req
+    return this.taskService.changeDone(user,req.params.id,body)
   }
 
 }

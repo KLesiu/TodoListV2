@@ -10,7 +10,7 @@ export class TasksService {
     constructor(@InjectModel('Task') private readonly taskModel:Model<Task>,@InjectModel('User') private readonly userModel:Model<User>){}
 
 
-    // Get all user tasks
+    
     async getTasks(user:{
         name:string,
         _id:string,
@@ -21,7 +21,7 @@ export class TasksService {
         return userSearch["tasks"]
         
     }
-    // Post task from user to database
+   
     async postTask(user:{
         name:string,
         _id:string,
@@ -49,7 +49,7 @@ export class TasksService {
 
     }
 
-    // Update current task
+  
     async updateTask(user:{
         name:string,
         _id:string,
@@ -71,7 +71,7 @@ export class TasksService {
       
       
     }
-    // Delete current task
+   
     async deleteTask(user:{
         name:string,
         _id:string,
@@ -91,7 +91,7 @@ export class TasksService {
         
     }
 
-    // Change task status
+   
     async changeDone(user:{
         name:string,
         _id:string,

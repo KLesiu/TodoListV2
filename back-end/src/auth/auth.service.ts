@@ -12,7 +12,7 @@ export class AuthService {
     ){}
    
 
-    // Login user
+  
     async login(user:any): Promise<any>{
         const findUser = await this.usersService.findOneUser(user.name)
         if(!user.name) return {status:'Name is required'}
@@ -33,7 +33,7 @@ export class AuthService {
         
 
     }
-    // Register user
+   
     async register(userData:{name:string,password:string}):Promise<any>{
         
         const user = await this.usersService.createUser(userData)
