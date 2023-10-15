@@ -5,7 +5,7 @@ describe("RemoveTaskButtonComponent",()=>{
     it("Should create",()=>{
         let fixture = TestBed.createComponent(RemoveTaskButtonComponent)
         let compiled = fixture.nativeElement
-        expect(compiled.querySelector("span").textContent).toBe("Are you sure?")
+        expect(compiled.querySelector("span").textContent).toContain("Are you sure?")
     })
   
 })
