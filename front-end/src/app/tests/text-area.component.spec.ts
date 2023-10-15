@@ -1,5 +1,5 @@
 import {TestBed} from "@angular/core/testing"
-import { AutoFieldAreaComponent } from "../components/auto-field-area.component"
+import { AutoFieldAreaComponent } from "../components/text-area.component"
 
 describe("AutoFieldAreaComponent",()=>{
     it('Should create',()=>{

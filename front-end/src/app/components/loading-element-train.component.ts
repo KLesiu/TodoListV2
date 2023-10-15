@@ -9,13 +9,13 @@ import { CommonModule } from '@angular/common';
     <div class="container">
       <div class="track"></div>
       <div class="train"></div>
-      
     </div>
+
     <p class="loading-p">Loading.......</p>
   `,
   styles: [
     `
-    .container {
+.container {
   margin-left:20%;
   margin-top:150px;
   position: relative;

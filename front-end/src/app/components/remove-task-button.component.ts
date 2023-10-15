@@ -17,32 +17,32 @@ import {
   template: `
     <div (click)="removeMode && $event.stopPropagation()"
     class="flex items-center rounded-md" [class.bg-red-600]="removeMode" [class.text-white]="removeMode">
-        <span
+      <span
         class="text-sm transition-transform duration-300 h-full py-2 pl-2 rounded-md font-semibold"
         [class.invisible]="!removeMode"
         [class.-translate-x-6]="removeMode"
         [class.bg-red-700]="removeMode"
-        >Are you sure?</span>
-        <button
+        >Are you sure?
+      </span>
+      <button
         *ngIf="!removeMode"
         (click)="removeMode = true; $event.stopPropagation()"
-        class="flex hover:bg-white hover:rounded-full"
-      >
-      <ng-icon name="featherTrash2" class="icon--hover" />
+        class="flex hover:bg-white hover:rounded-full">
+            <ng-icon name="featherTrash2" class="icon--hover" />
       </button>
+
       <button
         *ngIf="removeMode"
         (click)="removeMode = false; $event.stopPropagation()"
         class="flex mr-1"
       >
-        <ng-icon name="featherX" class="hover:bg-white icon--hover" />
+        <ng-icon name="featherX" class="hover:bg-white hover:text-black icon--hover" />
       </button>
       <button
         *ngIf="removeMode"
         (click)="confirm.emit(); removeMode = false; $event.stopPropagation()"
-        class="flex pr-2"
-      >
-        <ng-icon name="featherCheck" class="hover:bg-white icon--hover" />
+        class="flex pr-2">
+        <ng-icon name="featherCheck" class="hover:bg-white hover:text-black icon--hover" />
       </button>
   
   

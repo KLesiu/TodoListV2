@@ -4,7 +4,7 @@ import { Component,EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-submit-task',
   standalone: true,
-  imports: [],
+  
   template: `
 
     <input #inputTask type="text" class="border-b border-b-blue-200 outline-none" (keyup.enter)="submitText.emit(inputTask.value); inputTask.value=''">

@@ -13,6 +13,7 @@ import { ButtonLogoutComponent } from './button-logout.component';
 
 
 
+
 @Component({
   selector: 'app-main-app-container',
   standalone: true,
@@ -20,16 +21,17 @@ import { ButtonLogoutComponent } from './button-logout.component';
   template: `
     <main class="flex justify-between flex-wrap flex-col items-center min-h-[90vh] ">
         <div id="containerForComponents" *ngIf="isLogIn;else loginANDregisterForms" class=" p-20 min-h-[80vh] min-w-[40vw] flex flex-wrap flex-col items-center rounded-lg">
-          <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
           
+          <app-submit-task (submitText)="listState.state==='success'&&addNewTask($event,listState.results)" />
           <app-list-tasks *ngIf="listState.state==='success'" class="block mt-4 w-[70%]" [tasks]="listState.results" />
           <p *ngIf="listState.state==='error'">{{listState.error.msg}}</p>
           <p *ngIf="listState.state==='loading'">
-          <app-loading-element-train  />  
-         </p>
+            <app-loading-element-train  />  
+          </p>
          <app-button-logout (newLogInStatus)="changeisLogInStatus($event)" />
 
         </div>
+
         <ng-template  #loginANDregisterForms>
           <div class="flex justify-around w-[40%] flex-wrap">
             <app-register-form />
@@ -38,16 +40,17 @@ import { ButtonLogoutComponent } from './button-logout.component';
 
         </ng-template>
 
-
         <app-footer />
     </main>
   `,
   styles: [
     `
-    #containerForComponents{
+#containerForComponents{
     -webkit-box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
     -moz-box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
     box-shadow: 8px 8px 17px -13px rgba(66, 68, 90, 1);
+    border-top:1px solid grey;
+    border-left:1px solid grey
     }
     `
   ]
@@ -67,23 +70,26 @@ export class MainAppContainerComponent {
       })
     }
 
-    // Run services needed to add task
+   
     addNewTask(name:string,tasks:Task[]){
       if(name.length < 1) return alert('You have to name your task')
       this.listState={state:"loading"}
-      const useTaskServiceToAdd=async()=>{
-        
-        this.tasksService.add(name).then(()=>this.ngOnInit())
-       
-      }
-      useTaskServiceToAdd()
+      
+      this.useTaskServiceToAdd(name)
       
     }
 
-    // Change login status, and run ngOnInit
+    private useTaskServiceToAdd=async(name:string)=>{
+       this.tasksService.add(name).then(()=>this.ngOnInit())
+     
+    }
+
+    
     changeisLogInStatus(value:boolean){
       this.isLogIn=value
       this.ngOnInit()
     }
+
+    
 
 }

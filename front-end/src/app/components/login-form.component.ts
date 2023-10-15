@@ -8,7 +8,7 @@ import { FormControl,FormGroup,ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule],
   template: `
-     <form [formGroup]="applyForm" (submit)="subForm()"  class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
+     <form [formGroup]="applyForm" (submit)="submitLogin()"  class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
       <h2 class="text-blue-600  text-2xl border-b-2 border-indigo-300">LOGIN</h2>
       <label for="username">Username</label>
       <input type="text" name="username"  formControlName="username">
@@ -19,10 +19,10 @@ import { FormControl,FormGroup,ReactiveFormsModule } from '@angular/forms';
   `,
   styles: [
     `
-    label{
+label{
       @apply mt-5
     }
-    input{
+input{
       @apply border-b border-b-blue-200 outline-none
     }
 
@@ -38,15 +38,13 @@ export class LoginFormComponent {
    
   })
 
-  // Run services needed to login user 
-  subApp(){
-    
+  submitLogin(){
   this.authService.login(
       this.applyForm.value.username ?? '',
       this.applyForm.value.password ?? '',
       
        ).then((res)=>{
-        if(res.status==="validated"){
+        if(this.userValidated(res.status)){
           return this.changeStatus(true)
         }
         alert(res.status)
@@ -57,16 +55,12 @@ export class LoginFormComponent {
     
   }
 
-  // Change login status
-  changeStatus(value:boolean){
+ private changeStatus(value:boolean){
     this.newLogInStatus.emit(value)
   }
 
-  // Submit form
-  subForm(){
-    this.subApp()
-   }
-
- 
+  private userValidated(status:string){
+    return status === 'validated'
+  }
 }
 

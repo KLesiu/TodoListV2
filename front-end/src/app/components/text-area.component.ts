@@ -4,7 +4,6 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-auto-field-area',
   standalone: true,
-  imports: [],
   template: `
     <textarea
         #textarea
@@ -17,8 +16,7 @@ import { Component,Input,Output,EventEmitter } from '@angular/core';
     >
     </textarea>
   `,
-  styles: [
-  ]
+
 })
 export class AutoFieldAreaComponent {
   @Input() placeholder="";

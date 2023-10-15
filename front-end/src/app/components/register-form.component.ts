@@ -8,7 +8,7 @@ import { FormControl,FormGroup,ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule],
   template: `
-    <form [formGroup]="applyForm" (submit)="subApp()"  class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
+    <form [formGroup]="applyForm" (submit)="submitRegisterUser()"  class="flex flex-col justify-around  border p-10 rounded-lg h-[100%]">
       <h2 class="text-blue-600  text-2xl border-b-2 border-indigo-300">REGISTER</h2>
       <label for="username">Username</label>
       <input type="text" name="username" id="username" formControlName="username" >
@@ -21,10 +21,10 @@ import { FormControl,FormGroup,ReactiveFormsModule } from '@angular/forms';
   `,
   styles: [
     `
-    label{
+label{
       @apply mt-5
     }
-    input{
+input{
       @apply border-b border-b-blue-200 outline-none
     }
 
@@ -39,8 +39,8 @@ export class RegisterFormComponent {
     rpassword: new FormControl('')
   })
 
-  // Run services needed to register user
-  subApp(){
+
+  submitRegisterUser(){
     this.authService.register(
       this.applyForm.value.username ?? '',
       this.applyForm.value.password ?? '',

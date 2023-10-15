@@ -8,8 +8,8 @@ import { wait } from "../helpers/wait";
     providedIn:'root'
 })
 export class TasksService{
-    private URL = "http://localhost:3000"
-    // Get all tasks by query to the api with the token downloaded from local storage
+    private readonly URL = "http://localhost:3000"
+    
     async getAllTasks(){
         await wait()
         return fetch(`${this.URL}`,{
@@ -24,7 +24,7 @@ export class TasksService{
         })
 
     }
-    // Add new task
+    
     async add(name:string){
         await wait()
         return fetch(`${this.URL}`,{
@@ -43,7 +43,7 @@ export class TasksService{
             return new Error('Cant add task')
         })
     }
-    // Delete current task
+    
     async delete(taskId:string){
         return fetch(`${this.URL}/${taskId}`,{
             method: "DELETE",
@@ -56,7 +56,7 @@ export class TasksService{
             return new Error('Cant delete task')
         })
     }
-    // Update current task
+    
     async update(name:string,taskId:string){
         return fetch(`${this.URL}/${taskId}`,{
             method: "PATCH",

@@ -3,7 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Task } from '../types/task.type';
 import { TasksService } from '../services/tasks.service';
 import { RemoveTaskButtonComponent } from './remove-task-button.component';
-import { AutoFieldAreaComponent } from './auto-field-area.component';
+import { AutoFieldAreaComponent } from './text-area.component';
 
 
 @Component({
@@ -12,30 +12,39 @@ import { AutoFieldAreaComponent } from './auto-field-area.component';
   imports: [NgFor,NgIf,RemoveTaskButtonComponent,AutoFieldAreaComponent],
   template: `
    <ul class="mt-[5vh]" *ngIf="tasks.length>0 ;else noTasksElement">
+
       <li class="mb-2" *ngFor="let task of tasks">
         <div class="rounded-md shadow-md p-4 block">
           <button class="w-full" 
             (click)="handleSingleClick(task)" 
             (dblclick)="switchModeToEdit(task)">
-          <aside class="flex justify-end">
-            <app-remove-task-button (confirm)="delete(task._id)" />
-          </aside>
-          <section class="text-left">
-            <app-auto-field-area *ngIf="editMode&&switchingTask===task._id;else previewModeTemplate"
-              (keyup.escape)="editMode = false"
-              (submitText)="updateTask(task._id,$event,task)"
-              [value]="task.name" />
-            <ng-template #previewModeTemplate>
-                <span [class.line-through]="task.done">
-                  {{ task.name }}
-                </span>
-              </ng-template>
-          </section>
+
+            <aside class="flex justify-end">
+              <app-remove-task-button (confirm)="delete(task._id)" />
+            </aside>
+
+            <section class="text-left">
+
+              <app-auto-field-area *ngIf="editMode&&switchingTask===task._id;else previewModeTemplate"
+                (keyup.escape)="editMode = false"
+                (submitText)="updateTask(task._id,$event,task)"
+                [value]="task.name" />
+
+              <ng-template #previewModeTemplate>
+                  <span [class.line-through]="task.done">
+                    {{ task.name }}
+                  </span>
+                </ng-template>
+                
+            </section>
+
           </button>
            
         </div>
       </li>
-      
+
+      <p class="text-xs">*Double click on the task if you want to edit </p>
+
    </ul>
    <ng-template #noTasksElement>
       <p>
@@ -55,7 +64,7 @@ export class ListTasksComponent {
 
   private tasksService = inject(TasksService)
 
-  // Use method delete from tasksService on current task
+  
   delete(taskId:string){
     this.tasksService.delete(taskId)
     const newTasks = this.tasks.filter(task=>task._id !== taskId)
@@ -63,14 +72,14 @@ export class ListTasksComponent {
    
     
   }
-  // Use method update from taskService on current task
+  
   updateTask(taskId:string,updateName:string,task:Task){
     this.tasksService.update(updateName,taskId)
     this.editMode=false
     task.name = updateName
   }
   
-  // Use changeDoneStatus method after single click on task
+  
   handleSingleClick(task:Task){
     this.isSingleClick=true
     setTimeout(()=>{
@@ -79,14 +88,14 @@ export class ListTasksComponent {
     
   })}
 
-  // Show edit mode on current task
+  
   switchModeToEdit(task:Task){
     this.switchingTask=task._id
     this.isSingleClick=false
     this.editMode=true
   }
 
-  // Change task status
+  
   changeDoneStatus(task:Task){
     task.done = !task.done
     this.tasksService.changeDone(task._id,task.done)
