@@ -10,6 +10,7 @@ export class AppController {
     private taskService: TasksService) 
     {}
 
+
   @Post('/register')
  register(@Request() req){
     return this.authService.register(req.body)

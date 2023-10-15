@@ -11,7 +11,7 @@ describe('AppComponent',()=>{
         let fixture = TestBed.createComponent(AppComponent)
         fixture.detectChanges()
         const compiled = fixture.nativeElement
-        expect(compiled.querySelector("h1").textContent).toEqual(' ToDoList v2')
+        expect(compiled.querySelector("h1").textContent).toEqual(' ToDoList  v2 ')
     })
 
     it('Should render container',()=>{

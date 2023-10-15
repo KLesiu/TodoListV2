@@ -24,10 +24,14 @@ import { Component,Output,EventEmitter } from '@angular/core';
 })
 export class ButtonLogoutComponent {
   @Output() newLogInStatus = new EventEmitter<boolean>()
+
+  //Logout user, remove token from local storage
   logOut(){
     localStorage.removeItem("jwt")
     this.changeStatus(false)
   }
+
+  // Change login status
   changeStatus(value:boolean){
     this.newLogInStatus.emit(value)
   }

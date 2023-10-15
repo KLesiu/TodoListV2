@@ -14,10 +14,9 @@ export const TaskSchema = new mongoose.Schema({
         type:Number,
         required:[true,'Date is required']
     }
-})
+})   
 
 export interface Task extends mongoose.Document{
-   
     name:string,
     done:boolean,
     createdAt:number

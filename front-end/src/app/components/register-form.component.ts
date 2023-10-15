@@ -38,6 +38,8 @@ export class RegisterFormComponent {
     password: new FormControl(''),
     rpassword: new FormControl('')
   })
+
+  // Run services needed to register user
   subApp(){
     this.authService.register(
       this.applyForm.value.username ?? '',

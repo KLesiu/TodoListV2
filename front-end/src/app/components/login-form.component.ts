@@ -37,6 +37,8 @@ export class LoginFormComponent {
     password: new FormControl(''),
    
   })
+
+  // Run services needed to login user 
   subApp(){
     
   this.authService.login(
@@ -54,15 +56,16 @@ export class LoginFormComponent {
        
     
   }
+
+  // Change login status
   changeStatus(value:boolean){
     this.newLogInStatus.emit(value)
   }
+
+  // Submit form
   subForm(){
     this.subApp()
-   
-
-
-  }
+   }
 
  
 }

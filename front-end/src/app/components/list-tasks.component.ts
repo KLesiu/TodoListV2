@@ -54,6 +54,8 @@ export class ListTasksComponent {
   switchingTask = ""
 
   private tasksService = inject(TasksService)
+
+  // Use method delete from tasksService on current task
   delete(taskId:string){
     this.tasksService.delete(taskId)
     const newTasks = this.tasks.filter(task=>task._id !== taskId)
@@ -61,13 +63,14 @@ export class ListTasksComponent {
    
     
   }
+  // Use method update from taskService on current task
   updateTask(taskId:string,updateName:string,task:Task){
     this.tasksService.update(updateName,taskId)
     this.editMode=false
     task.name = updateName
   }
   
-
+  // Use changeDoneStatus method after single click on task
   handleSingleClick(task:Task){
     this.isSingleClick=true
     setTimeout(()=>{
@@ -76,11 +79,14 @@ export class ListTasksComponent {
     
   })}
 
+  // Show edit mode on current task
   switchModeToEdit(task:Task){
     this.switchingTask=task._id
     this.isSingleClick=false
     this.editMode=true
   }
+
+  // Change task status
   changeDoneStatus(task:Task){
     task.done = !task.done
     this.tasksService.changeDone(task._id,task.done)

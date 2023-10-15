@@ -8,7 +8,7 @@ describe("ListTasksComponent",()=>{
         let component = fixture.componentInstance
         component.tasks.length=0
         fixture.detectChanges()
-        expect(compiled.querySelector("p").textContent).toBe("You dont have any tasks!")
+        expect(compiled.querySelector("p").textContent).toBe(" You dont have any tasks! ")
     })
 
     it('Should show edit mode',()=>{

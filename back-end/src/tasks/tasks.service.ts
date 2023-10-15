@@ -9,6 +9,8 @@ import { User } from "src/users/users.model";
 export class TasksService {
     constructor(@InjectModel('Task') private readonly taskModel:Model<Task>,@InjectModel('User') private readonly userModel:Model<User>){}
 
+
+    // Get all user tasks
     async getTasks(user:{
         name:string,
         _id:string,
@@ -19,6 +21,7 @@ export class TasksService {
         return userSearch["tasks"]
         
     }
+    // Post task from user to database
     async postTask(user:{
         name:string,
         _id:string,
@@ -45,6 +48,8 @@ export class TasksService {
 
 
     }
+
+    // Update current task
     async updateTask(user:{
         name:string,
         _id:string,
@@ -54,11 +59,7 @@ export class TasksService {
     }){
         const searchUser: Model<User> = await this.userModel.findById(user._id)
         const allTasks = await searchUser['tasks']
-        
-      
         const updatedTasks = allTasks.map((ele:Task)=>{
-          
-           
             if(`${ele._id}`=== id) ele.name=body.name
             return ele
 
@@ -70,6 +71,7 @@ export class TasksService {
       
       
     }
+    // Delete current task
     async deleteTask(user:{
         name:string,
         _id:string,
@@ -88,6 +90,8 @@ export class TasksService {
         return updatedUser
         
     }
+
+    // Change task status
     async changeDone(user:{
         name:string,
         _id:string,
@@ -98,8 +102,6 @@ export class TasksService {
         const searchUser: Model<User> = await this.userModel.findById(user._id)
         const allTasks = await searchUser['tasks']
         const updatedTasks = allTasks.map((ele:Task)=>{
-          
-           
             if(`${ele._id}`=== id) ele.done=!ele.done
             return ele
 

@@ -14,6 +14,8 @@ export class JwtStrategy extends PassportStrategy(Strategy){
             secretOrKey: process.env.JWT_SECRET
         })
     }
+
+    // Validate user
     async validate(info:any){
         
         const user = await this.usersService.findOneUser(info.name)

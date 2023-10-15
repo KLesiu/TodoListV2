@@ -56,6 +56,8 @@ export class MainAppContainerComponent {
     isLogIn:boolean=false
     listState:ComponentListState<Task>={state:'init'}
     private tasksService = inject(TasksService)
+
+    // If localStorage has token show user tasks and login, else show forms section
     ngOnInit(){
       if(localStorage.getItem('jwt')) this.isLogIn=true
       this.listState={state:"loading"}
@@ -64,6 +66,8 @@ export class MainAppContainerComponent {
         else this.listState={state:"error",error:res}
       })
     }
+
+    // Run services needed to add task
     addNewTask(name:string,tasks:Task[]){
       if(name.length < 1) return alert('You have to name your task')
       this.listState={state:"loading"}
@@ -75,6 +79,8 @@ export class MainAppContainerComponent {
       useTaskServiceToAdd()
       
     }
+
+    // Change login status, and run ngOnInit
     changeisLogInStatus(value:boolean){
       this.isLogIn=value
       this.ngOnInit()

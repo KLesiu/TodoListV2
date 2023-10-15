@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class AuthService{
     private URL = "http://localhost:3000"
+    // Register user or return validate error
     async register(username:string,password:string,rpassword:string){
         if(!username) return {status: 'Username is required'}
         if(!password || !rpassword) return {status: "Both passwords are required"}
@@ -23,7 +24,7 @@ export class AuthService{
             return {status:res.status,msg:res.statusText}
         })
     }
-
+    // Login user, save token to local storage
     async login(username:string,password:string){
         return fetch(`${this.URL}/login`,{
             method:"POST",
