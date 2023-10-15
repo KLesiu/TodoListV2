@@ -50,6 +50,7 @@ This will start your Angular application and Nest.js application in separate con
 Technologies used in the project:
 
 *   JavaScript
+*   NodeJS
 *   Angular
 *   NestJs
 *   MongoDB
@@ -59,6 +60,7 @@ Technologies used in the project:
 *   Postman
 *   Bcrypt
 *   Jest
+*   Docker
 
 <h2>Sensitive data</h2>
 Sensitive data was provided for recruitment purposes
