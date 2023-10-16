@@ -44,6 +44,7 @@ export class AuthService{
                return this.userLoggedIn(data)
             }
 
+            // Not logged in
             return {status:data.status}
             
         })

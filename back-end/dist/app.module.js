@@ -20,7 +20,6 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [auth_module_1.AuthModule, users_module_1.UsersModule, tasks_module_1.TasksModule, mongoose_1.MongooseModule.forRoot(`mongodb+srv://admin:admin@cluster0.jenqrab.mongodb.net/?retryWrites=true&w=majority`)],
         controllers: [app_controller_1.AppController],
-        providers: [],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

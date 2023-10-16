@@ -20,7 +20,7 @@ export class TasksService{
         }).then<Task[] | ListFetchingError>(res=>{
             if(res.ok) return res.json()
             return {
-        status:res.status,msg:'Error'}
+                status:res.status,msg:'Error'}
         })
 
     }

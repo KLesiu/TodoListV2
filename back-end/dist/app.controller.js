@@ -23,28 +23,36 @@ let AppController = class AppController {
         this.taskService = taskService;
     }
     register(req) {
-        return this.authService.register(req.body);
+        const { body } = req;
+        return this.authService.register(body);
     }
     login(req) {
-        return this.authService.login(req.body);
+        const { body } = req;
+        return this.authService.login(body);
     }
     getProfile(req) {
-        return req.user;
+        const { user } = req;
+        return user;
     }
     getTasksFromUser(req) {
-        return this.taskService.getTasks(req.user);
+        const { user } = req;
+        return this.taskService.getTasks(user);
     }
     postNewTask(req) {
-        return this.taskService.postTask(req.user, req.body);
+        const { user, body } = req;
+        return this.taskService.postTask(user, body);
     }
     updateTask(req) {
-        return this.taskService.updateTask(req.user, req.params.id, req.body);
+        const { user, body } = req;
+        return this.taskService.updateTask(user, req.params.id, body);
     }
     deleteTask(req) {
-        return this.taskService.deleteTask(req.user, req.params.id, req.body);
+        const { user, body } = req;
+        return this.taskService.deleteTask(user, req.params.id, body);
     }
     changeDone(req) {
-        return this.taskService.changeDone(req.user, req.params.id, req.body);
+        const { user, body } = req;
+        return this.taskService.changeDone(user, req.params.id, body);
     }
 };
 exports.AppController = AppController;
